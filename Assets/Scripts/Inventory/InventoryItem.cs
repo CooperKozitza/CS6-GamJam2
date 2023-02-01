@@ -9,12 +9,7 @@ using UnityEngine;
 public class InventoryItem : ScriptableObject
 {
     [Header("Inventory Icon")]
-    public Texture2D icon;
-
-    //====================================================================================================
-
-    [Header("Item Data")]
-    public int count = 1;
+    public Sprite icon;
 
     //====================================================================================================
 
@@ -46,7 +41,7 @@ public class InventoryItem : ScriptableObject
 
     //====================================================================================================
 
-    public InventoryItem(InventoryItem copy, int count = 1)
+    public InventoryItem(InventoryItem copy)
     {
         icon = copy.icon;
 
@@ -60,8 +55,6 @@ public class InventoryItem : ScriptableObject
 
         id = copy.id;
         uid = createUid();
-
-        this.count = count;
     }
 
     public InventoryItem()
@@ -74,20 +67,5 @@ public class InventoryItem : ScriptableObject
     private string createUid()
     {
         return Hash128.Compute(System.DateTime.Now.ToLongDateString()).ToString();
-    }
-
-    void mergeStack(InventoryItem stack)
-    {
-        if (stack.canStack == false || stack.id != this.id) return;
-        if (count + stack.count > maxStackCount)
-        {
-            stack.count = maxStackCount - count;
-            count = maxStackCount;
-        }
-        else
-        {
-            count += stack.count;
-            // get rid of 'stack'
-        }
     }
 }
