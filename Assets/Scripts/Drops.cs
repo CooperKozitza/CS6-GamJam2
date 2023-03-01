@@ -35,7 +35,7 @@ public class Drops : MonoBehaviour
     {
         foreach (DropItem dropItem in dropItems)
         {
-            float chance = Random.Range(0, 1);
+            float chance = Random.Range(0, 1f);
             if (chance <= dropItem.dropChance)
             {
                 Instantiate(dropItem.model, dropLocation);
