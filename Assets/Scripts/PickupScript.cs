@@ -54,6 +54,7 @@ public class PickupScript : MonoBehaviour
 
     private void Hit(GameObject pickup)
     {
-
+        //Instantiate(pickup.dropItem);
+        
     }
 }
