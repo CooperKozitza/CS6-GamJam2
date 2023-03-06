@@ -9,11 +9,12 @@ using System.Diagnostics;
 public class PickupScript : MonoBehaviour
 {
 
-    public int keyCount = 0;
-    public Material startColor;
-    public Material selectColor;
+    //public int keyCount = 0;
+    //public Material startColor;
+    //public Material selectColor;
     public GameObject cam;
-    public GameObject[] pickups;
+    //public GameObject[] pickups;
+    public Drops drops;
 
     // Start is called before the first frame update
     void Start()
@@ -35,10 +36,11 @@ public class PickupScript : MonoBehaviour
 
         if (Physics.Raycast(transform.position, rayDirection.normalized, out hit, length))
         {
+            UnityEngine.Debug.Log("Hit");
             GameObject pickup = hit.transform.gameObject;
             if (pickup.CompareTag("Interactable"))
             {
-                UnityEngine.Debug.Log("Facing Tree");
+                UnityEngine.Debug.Log("Facing Resource");
                 if (Input.GetKey(KeyCode.E))
                 {
                     Hit(pickup);
@@ -54,7 +56,7 @@ public class PickupScript : MonoBehaviour
 
     private void Hit(GameObject pickup)
     {
-        //Instantiate(pickup.dropItem);
-        
+        drops = pickup.GetComponent<Drops>();
+        drops.Drop();
     }
 }
