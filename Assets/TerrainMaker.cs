@@ -8,9 +8,13 @@ public class TerrainMaker : MonoBehaviour
     int[] triangles;
     public int xSize;
     public int zSize;
-    public float pNoiseYMult;
     public float pNoiseXMult;
     public float pNoiseZMult;
+    public float pNoiseYMult;
+    public float pNoiseYMult2;
+    public float pNoiseYMult3;
+    public float pNoiseYMult4;
+    int randChance;
 
     Mesh mesh;
 
@@ -41,9 +45,31 @@ public class TerrainMaker : MonoBehaviour
         {
             for(int x = 0; x <= xSize; x++)
             {
+                randChance = Random.Range(1, 20);
+                
+                if(randChance == 2 || randChance == 3 || randChance == 4 || randChance == 5)
+                {
+                    float y = Mathf.PerlinNoise(x * pNoiseXMult, z * pNoiseZMult) * pNoiseYMult2;
+                    verticies[i] = new Vector3(x, y, z);
+
+                } else if (randChance == 6 || randChance == 7)
+                {
+                    float y = Mathf.PerlinNoise(x * pNoiseXMult, z * pNoiseZMult) * pNoiseYMult3;
+                    verticies[i] = new Vector3(x, y, z);
+
+                } else if(randChance == 1)
+                {
+                    float y = Mathf.PerlinNoise(x * pNoiseXMult, z * pNoiseZMult) * pNoiseYMult4;
+                    verticies[i] = new Vector3(x, y, z);
+                }
+                else
+                {
+                    float y = Mathf.PerlinNoise(x * pNoiseXMult, z * pNoiseZMult) * pNoiseYMult;
+                    verticies[i] = new Vector3(x, y, z);
+                }
                 //pNoiseYMult = Random.Range(1f, 5f);
-                float y = Mathf.PerlinNoise(x * pNoiseXMult, z * pNoiseZMult) * pNoiseYMult;
-                verticies[i] = new Vector3(x, y, z);
+                //y = Mathf.PerlinNoise(x * pNoiseXMult, z * pNoiseZMult) * pNoiseYMult;
+                
                 i++;
             }
         }
