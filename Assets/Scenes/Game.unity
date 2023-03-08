@@ -1597,7 +1597,7 @@ PrefabInstance:
     - target: {fileID: 4248889232835251865, guid: 5a691fc0478d14688933195a165f4a28,
         type: 3}
       propertyPath: speed
-      value: 0.5
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4248889232835251865, guid: 5a691fc0478d14688933195a165f4a28,
         type: 3}
@@ -4194,6 +4194,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 2010647366}
   drops: {fileID: 0}
+  hitCooldown: 0
+  hitDelay: 1
+  inventoryBearer: {fileID: 11400000, guid: d4505823aeb0d834ca5caeb6ec8f14a7, type: 2}
 --- !u!54 &1489979608
 Rigidbody:
   m_ObjectHideFlags: 0
