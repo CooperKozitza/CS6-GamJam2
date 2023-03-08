@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine.UI;
 using System.Diagnostics;
 using Debug = UnityEngine.Debug;
+using System;
 
 [DebuggerDisplay("{" + nameof(GetDebuggerDisplay) + "(),nq}")]
 public class PickupScript : MonoBehaviour
@@ -18,6 +19,7 @@ public class PickupScript : MonoBehaviour
     public Drops drops;
     public float hitCooldown;
     public float hitDelay;
+    public InventoryBearer inventoryBearer;
 
     // Start is called before the first frame update
     void Start()
@@ -44,7 +46,17 @@ public class PickupScript : MonoBehaviour
 
         if (Physics.Raycast(transform.position, rayDirection.normalized, out hit, length))
         {
-            GameObject pickup = hit.transform.parent.gameObject;
+            GameObject pickup;
+            try
+            {
+                pickup = hit.transform.parent.gameObject;
+            }
+            catch(Exception e)
+            {
+                Debug.Log(e);
+                return;
+            }
+
             //Debug.Log(pickup.name);
             if (pickup.CompareTag("Interactable"))
             {
@@ -77,7 +89,7 @@ public class PickupScript : MonoBehaviour
 
         if (pickup == null) return;
 
-        GetComponent<InventoryBearer>().pickup(pickup.item, 1);
+        inventoryBearer.pickup(pickup.item, 1);
 
         collision.gameObject.SetActive(false);
     }
