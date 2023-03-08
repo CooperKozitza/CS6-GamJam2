@@ -4,27 +4,31 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using System.Diagnostics;
+using Debug = UnityEngine.Debug;
 
 [DebuggerDisplay("{" + nameof(GetDebuggerDisplay) + "(),nq}")]
 public class PickupScript : MonoBehaviour
 {
 
-    public int keyCount = 0;
-    public Material startColor;
-    public Material selectColor;
+    //public int keyCount = 0;
+    //public Material startColor;
+    //public Material selectColor;
     public GameObject cam;
-    public GameObject[] pickups;
+    //public GameObject[] pickups;
+    public Drops drops;
+    public float hitCooldown;
+    public float hitDelay;
 
     // Start is called before the first frame update
     void Start()
     {
+        hitCooldown = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
         CheckPickup();
-
     }
 
     private void CheckPickup()
@@ -33,15 +37,22 @@ public class PickupScript : MonoBehaviour
         RaycastHit hit;
         Vector3 rayDirection = cam.transform.forward;
 
+        if (hitCooldown > 0)
+            hitCooldown -= Time.deltaTime;
+        else
+            hitCooldown = 0;
+
         if (Physics.Raycast(transform.position, rayDirection.normalized, out hit, length))
         {
-            GameObject pickup = hit.transform.gameObject;
+            GameObject pickup = hit.transform.parent.gameObject;
+            //Debug.Log(pickup.name);
             if (pickup.CompareTag("Interactable"))
             {
-                UnityEngine.Debug.Log("Facing Tree");
-                if (Input.GetKey(KeyCode.E))
+                //Debug.Log("Facing Resource");
+                if (Input.GetKey(KeyCode.F) && hitCooldown == 0)
                 {
                     Hit(pickup);
+                    hitCooldown = hitDelay;
                 }
             }
         }
@@ -54,7 +65,20 @@ public class PickupScript : MonoBehaviour
 
     private void Hit(GameObject pickup)
     {
-        //Instantiate(pickup.dropItem);
-        
+        drops = pickup.GetComponent<Drops>();
+        drops.Drop();
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        InventoryPickup pickup = collision.transform.parent.GetComponent<InventoryPickup>();
+
+        Debug.Log(pickup == null ? "nope" : "yup");
+
+        if (pickup == null) return;
+
+        GetComponent<InventoryBearer>().pickup(pickup.item, 1);
+
+        collision.gameObject.SetActive(false);
     }
 }
