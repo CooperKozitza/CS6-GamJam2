@@ -47,13 +47,10 @@ public class PickupScript : MonoBehaviour
         if (Physics.Raycast(transform.position, rayDirection.normalized, out hit, length))
         {
             GameObject pickup;
-            try
-            {
+            if (hit.transform.gameObject.CompareTag("Interactable")) {
                 pickup = hit.transform.parent.gameObject;
-            }
-            catch(Exception e)
+            } else
             {
-                Debug.Log(e);
                 return;
             }
 
@@ -83,14 +80,17 @@ public class PickupScript : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        InventoryPickup pickup = collision.transform.parent.GetComponent<InventoryPickup>();
+        if (collision.gameObject.CompareTag("Interactable"))
+        {
+            InventoryPickup pickup = collision.transform.parent.GetComponent<InventoryPickup>();
 
-        Debug.Log(pickup == null ? "nope" : "yup");
+            Debug.Log(pickup == null ? "nope" : "yup");
 
-        if (pickup == null) return;
+            if (pickup == null) return;
 
-        inventoryBearer.pickup(pickup.item, 1);
+            inventoryBearer.Pickup(pickup.item, 1);
 
-        collision.gameObject.SetActive(false);
+            collision.gameObject.SetActive(false);
+        }
     }
 }
