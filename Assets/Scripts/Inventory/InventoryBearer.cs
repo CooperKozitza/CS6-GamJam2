@@ -9,25 +9,26 @@ public class InventoryBearer : ScriptableObject
 {
     public List<Item> inventoryItems;
 
-    public Item fetchItem(InventoryItem match)
+    public Item FetchItem(InventoryItem match)
     {
         return inventoryItems.Find(x => x.itemData == match);
     }
 
-    public Item fetchNotFullStack(InventoryItem match)
+    public Item FetchNotFullStack(InventoryItem match)
     {
         return inventoryItems.Find(x => x.itemData.id == match.id && x.itemData.canStack == true && x.count < x.itemData.maxStackCount);
     }
 
-    public Item fetchFullStack(InventoryItem match)
+    public Item FetchFullStack(InventoryItem match)
     {
         return inventoryItems.Find(x => x.itemData.id == match.id && x.itemData.canStack == true && x.count == x.itemData.maxStackCount);
     }
 
-    public void pickup(InventoryItem item, int pickupCount = 1)
+    public void Pickup(InventoryItem item, int pickupCount = 1)
     {
-        Item existingItem = fetchItem(item);
-        if (existingItem.itemData.canStack)
+        Item existingItem = FetchItem(item);
+
+        if (existingItem != null && existingItem.itemData.canStack)
         {
             if (existingItem.count + pickupCount <= existingItem.itemData.maxStackCount)
             {
@@ -62,19 +63,19 @@ public class InventoryBearer : ScriptableObject
         // TODO: remove object after pickup
     }
 
-    public void drop(InventoryItem item, int count = 1)
+    public void Drop(InventoryItem item, int count = 1)
     {
         
     }
 }
 [System.Serializable]
-public struct Item
+public class Item
 {
     public InventoryItem itemData;
     [Range(0, 50)]
     public int count;
 
-    public void mergeStack(Item stack)
+    public void MergeStack(Item stack)
     {
         if (stack.itemData.canStack == false || stack.itemData.id != this.itemData.id) return;
         if (count + stack.count > itemData.maxStackCount)
