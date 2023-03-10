@@ -52,7 +52,7 @@ MonoBehaviour:
     dropChance: 0.5
   - model: {fileID: 1841198099755103055, guid: b20f8360813374ff59497d9c45ab0442, type: 3}
     dropChance: 1
-  dropLocation: {fileID: 0}
+  dropLocation: {fileID: 295457496986330869}
   drop: 0
 --- !u!1 &3757941606334598003
 GameObject:
