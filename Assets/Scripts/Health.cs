@@ -7,10 +7,19 @@ public class Health : MonoBehaviour
 {
 
     [SerializeField]
-    int playerHP = 3;
+    int playerHP;
+
+    [SerializeField]
+    float playerHunger;
+
+    [SerializeField]
+    int playerHungerDrainMultiplier;
 
     [SerializeField]
     private TextMeshProUGUI healthDisplay;
+
+    [SerializeField]
+    private TextMeshProUGUI hungerDisplay;
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +31,10 @@ public class Health : MonoBehaviour
     void Update()
     {
         healthDisplay.text = playerHP.ToString();
+        playerHunger -= playerHungerDrainMultiplier * Time.deltaTime;
+        hungerDisplay.text = playerHunger.ToString();
     }
+
 
     private void OnCollisionEnter(Collision other)
     {
