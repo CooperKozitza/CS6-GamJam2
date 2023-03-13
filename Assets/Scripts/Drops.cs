@@ -31,7 +31,7 @@ public class Drops : MonoBehaviour
     /// <summary>
     /// Simulates hitting resource
     /// </summary>
-    void Drop()
+    public void Drop()
     {
         foreach (DropItem dropItem in dropItems)
         {
