@@ -19,7 +19,7 @@ public class TerrainMaker : MonoBehaviour
 
     Mesh mesh;
 
-    void Start()
+    void Awake()
     {
         mesh = new Mesh();
         GetComponent<MeshFilter>().mesh = mesh;
