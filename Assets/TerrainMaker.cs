@@ -8,12 +8,14 @@ public class TerrainMaker : MonoBehaviour
     int[] triangles;
     public int xSize;
     public int zSize;
+
     public float pNoiseXMult;
     public float pNoiseZMult;
     public float pNoiseYMult;
-    public float pNoiseYMult2;
-    public float pNoiseYMult3;
-    public float pNoiseYMult4;
+
+    [Range(0, 1)]
+    public float baseLevel = 0.25f;
+
     int randChance;
     public GameObject endPoint;
 
@@ -39,39 +41,41 @@ public class TerrainMaker : MonoBehaviour
     void InitialShape()
     {
         verticies = new Vector3[(xSize + 1) * (zSize + 1)];
-        
+
 
         int i = 0;
-        for(int z = 0; z <= zSize; z++)
+        for (int z = 0; z <= zSize; z++)
         {
-            for(int x = 0; x <= xSize; x++)
+            for (int x = 0; x <= xSize; x++)
             {
-                randChance = Random.Range(1, 20);
-                
-                if(randChance == 2 || randChance == 3 || randChance == 4 || randChance == 5)
-                {
-                    float y = Mathf.PerlinNoise(x * pNoiseXMult, z * pNoiseZMult) * pNoiseYMult2;
-                    verticies[i] = new Vector3(x, y, z);
+                //randChance = Random.Range(1, 20);
 
-                } else if (randChance == 6 || randChance == 7)
-                {
-                    float y = Mathf.PerlinNoise(x * pNoiseXMult, z * pNoiseZMult) * pNoiseYMult3;
-                    verticies[i] = new Vector3(x, y, z);
+                //if(randChance == 2 || randChance == 3 || randChance == 4 || randChance == 5)
+                //{
+                //    float y = Mathf.PerlinNoise(x * pNoiseXMult, z * pNoiseZMult) * pNoiseYMult2;
+                //    verticies[i] = new Vector3(x, y, z);
 
-                } else if(randChance == 1)
-                {
-                    float y = Mathf.PerlinNoise(x * pNoiseXMult, z * pNoiseZMult) * pNoiseYMult4;
-                    verticies[i] = new Vector3(x, y, z);
-                }
-                else
-                {
-                    float y = Mathf.PerlinNoise(x * pNoiseXMult, z * pNoiseZMult) * pNoiseYMult;
-                    verticies[i] = new Vector3(x, y, z);
-                }
+                //} else if (randChance == 6 || randChance == 7)
+                //{
+                //    float y = Mathf.PerlinNoise(x * pNoiseXMult, z * pNoiseZMult) * pNoiseYMult3;
+                //    verticies[i] = new Vector3(x, y, z);
+
+                //} else if(randChance == 1)
+                //{
+                //    float y = Mathf.PerlinNoise(x * pNoiseXMult, z * pNoiseZMult) * pNoiseYMult4;
+                //    verticies[i] = new Vector3(x, y, z);
+                //}
+                //else
+                //{
+                //    float y = Mathf.PerlinNoise(x * pNoiseXMult, z * pNoiseZMult) * pNoiseYMult;
+                //    verticies[i] = new Vector3(x, y, z);
+                //}
 
                 //could look into blending perlin noise for more realistic 
-                
-                i++;
+
+                float noise = Mathf.PerlinNoise((float)x / xSize * pNoiseXMult, (float)z / zSize * pNoiseZMult);
+                verticies[i] = new Vector3(x, (noise > noise / 10 + baseLevel ? noise : noise / 10 + baseLevel) * pNoiseYMult, z);
+                ++i;
             }
         }
 
