@@ -8,6 +8,10 @@ public class InventoryUIController : MonoBehaviour
     public InventoryBearer inventory;
     public List<GameObject> slots;
 
+    private void Start()
+    {
+    }
+
     void Update()
     {
         for (int i = 0; i < inventory.inventoryItems.Count; i++)

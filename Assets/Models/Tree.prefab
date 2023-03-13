@@ -52,7 +52,7 @@ MonoBehaviour:
     dropChance: 0.5
   - model: {fileID: 1841198099755103055, guid: b20f8360813374ff59497d9c45ab0442, type: 3}
     dropChance: 1
-  dropLocation: {fileID: 0}
+  dropLocation: {fileID: 295457496986330869}
   drop: 0
 --- !u!1 &3757941606334598003
 GameObject:
@@ -86,7 +86,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3522550015241257933}
-  m_RootOrder: -1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7294960763548926061
 MeshFilter:
@@ -196,7 +196,7 @@ GameObject:
   - component: {fileID: 5499243765381394977}
   m_Layer: 0
   m_Name: Trunk
-  m_TagString: Untagged
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

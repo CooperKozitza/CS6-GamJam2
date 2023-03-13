@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
   mass: 0
-  canStack: 0
-  maxStackCount: 0
+  canStack: 1
+  maxStackCount: 1000
   type: 0
   itemName: 
   description: 

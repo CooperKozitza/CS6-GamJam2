@@ -17,7 +17,7 @@ public class Drops : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        dropLocation = transform.GetChild(1).transform;
+        //dropLocation = transform.GetChild(1).transform;
     }
 
     // Update is called once per frame
