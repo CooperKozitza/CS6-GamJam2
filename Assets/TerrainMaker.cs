@@ -15,6 +15,7 @@ public class TerrainMaker : MonoBehaviour
     public float pNoiseYMult3;
     public float pNoiseYMult4;
     int randChance;
+    public GameObject endPoint;
 
     Mesh mesh;
 
@@ -67,8 +68,8 @@ public class TerrainMaker : MonoBehaviour
                     float y = Mathf.PerlinNoise(x * pNoiseXMult, z * pNoiseZMult) * pNoiseYMult;
                     verticies[i] = new Vector3(x, y, z);
                 }
-                //pNoiseYMult = Random.Range(1f, 5f);
-                //y = Mathf.PerlinNoise(x * pNoiseXMult, z * pNoiseZMult) * pNoiseYMult;
+
+                //could look into blending perlin noise for more realistic 
                 
                 i++;
             }
@@ -105,5 +106,6 @@ public class TerrainMaker : MonoBehaviour
         mesh.triangles = triangles;
 
         mesh.RecalculateNormals();
+        endPoint.transform.position = new Vector3(verticies[verticies.Length - 1].x, 0, verticies[verticies.Length - 1].z) * gameObject.transform.localScale.x;
     }
 }
