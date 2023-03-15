@@ -555,17 +555,18 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 107938190}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c8ee798cadca244cfaf544f7ef761581, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   thingsToSpawn:
   - {fileID: 2427942030450535424, guid: cf69c292d0c7b404e93532a40117a29c, type: 3}
-  numOfObjects: 0
+  - {fileID: 30596154415961604, guid: 27ea8f71437754a00a1cccd9cfd822d3, type: 3}
+  numOfObjects: 50
   spawnPos: {x: 0, y: 0, z: 0}
-  endpoint: {fileID: 0}
-  terrain: {fileID: 0}
+  endpoint: {fileID: 46293463}
+  terrain: {fileID: 1906619605}
   terrainX: 0
   terrainZ: 0
   endX: 0
@@ -6200,12 +6201,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2610b2db511141f4a27156f7f38866e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xSize: 50
-  zSize: 50
-  pNoiseXMult: 0.3
-  pNoiseZMult: 0.3
-  pNoiseYMult: 2
-  baseLevel: 0.25
+  verticies: []
+  xSize: 250
+  zSize: 250
+  pNoiseXMult: 7.5
+  pNoiseZMult: 7.5
+  pNoiseYMult: 50
+  baseLevel: 0.507
   endPoint: {fileID: 46293463}
 --- !u!1 &1946409342
 GameObject:

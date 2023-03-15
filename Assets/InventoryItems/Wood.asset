@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfd9ef186ee46304e8ef6951011620fb, type: 3}
   m_Name: Wood
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 379df226c8f3c41369309bc1aa4c50b2, type: 3}
   mass: 0
   canStack: 1
   maxStackCount: 1000
