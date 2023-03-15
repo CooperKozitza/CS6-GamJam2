@@ -563,6 +563,13 @@ MonoBehaviour:
   thingsToSpawn:
   - {fileID: 2427942030450535424, guid: cf69c292d0c7b404e93532a40117a29c, type: 3}
   numOfObjects: 0
+  spawnPos: {x: 0, y: 0, z: 0}
+  endpoint: {fileID: 0}
+  terrain: {fileID: 0}
+  terrainX: 0
+  terrainZ: 0
+  endX: 0
+  endZ: 0
 --- !u!4 &107938192
 Transform:
   m_ObjectHideFlags: 0
@@ -4678,8 +4685,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerHP: 5
-  playerHunger: 100
+  maximumPlayerHunger: 10
   playerHungerDrainMultiplier: 1
+  hungerDamageTime: 5
   healthDisplay: {fileID: 865792155}
   hungerDisplay: {fileID: 886726900}
 --- !u!1 &1545342248
@@ -6197,9 +6205,7 @@ MonoBehaviour:
   pNoiseXMult: 0.3
   pNoiseZMult: 0.3
   pNoiseYMult: 2
-  pNoiseYMult2: 2.25
-  pNoiseYMult3: 3.75
-  pNoiseYMult4: 4
+  baseLevel: 0.25
   endPoint: {fileID: 46293463}
 --- !u!1 &1946409342
 GameObject:

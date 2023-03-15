@@ -7,13 +7,18 @@ public class Health : MonoBehaviour
 {
 
     [SerializeField]
-    int playerHP;
+    public int playerHP;
 
-    [SerializeField]
     float playerHunger;
 
     [SerializeField]
-    int playerHungerDrainMultiplier;
+    float maximumPlayerHunger;
+
+    [SerializeField]
+    float playerHungerDrainMultiplier;
+
+    [SerializeField]
+    float hungerDamageTime;
 
     [SerializeField]
     private TextMeshProUGUI healthDisplay;
@@ -21,18 +26,36 @@ public class Health : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI hungerDisplay;
 
+    bool hungerDamaging = false;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        playerHunger = maximumPlayerHunger;
     }
 
     // Update is called once per frame
     void Update()
     {
         healthDisplay.text = playerHP.ToString();
-        playerHunger -= playerHungerDrainMultiplier * Time.deltaTime;
-        hungerDisplay.text = playerHunger.ToString();
+
+        if(playerHunger > 0)
+        {
+            hungerDamaging = false;
+
+            if (playerHunger > maximumPlayerHunger)
+            {
+                playerHunger = maximumPlayerHunger;
+            }
+            playerHunger -= playerHungerDrainMultiplier * Time.deltaTime;
+            hungerDisplay.text = ((int)playerHunger).ToString();
+        }
+        else if (!hungerDamaging)
+        {
+            InvokeRepeating("HungerDamage", 1, hungerDamageTime);
+
+            hungerDamaging = true;
+        }
     }
 
 
@@ -44,8 +67,15 @@ public class Health : MonoBehaviour
             Debug.Log(playerHP);
             if (playerHP == 0)
             {
-                Object.Destroy(gameObject);
+                healthDisplay.text = playerHP.ToString();
+                hungerDisplay.text = ((int)playerHunger).ToString();
+
+                //Object.Destroy(gameObject);
             }
         }
+    }
+    private void HungerDamage()
+    {
+        playerHP--;
     }
 }
