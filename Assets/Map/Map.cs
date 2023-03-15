@@ -90,7 +90,7 @@ namespace Terrain
             if (position.x > 0 && position.x < size.x && position.y > 0 && position.y < size.y) {
                 return heightMap[position.x, position.y] * mapOptions.amplitude;
             }
-            throw new IndexOutOfRangeException("argument 'position' was outside of the bounds of the map");
+            return 0;
         }
 
         //-----------------------------------------------------
@@ -103,17 +103,26 @@ namespace Terrain
 
             for (short i = 0; i < mapOptions.groupCount; i++) {
                 Vector2 groupCenter = new Vector2(Random.Range(0, (float)size.x), Random.Range(0, (float)size.y));
+
                 int groupSize = Random.Range(0, mapOptions.groupSize);
+
                 for (short j = 0; j < groupSize; j++) {
                     float angle = Random.Range(0, 2 * (float)Math.PI);
                     float distance = Random.Range(0, mapOptions.spread);
+
+                    Vector2 position = new(groupCenter.x + (float)Math.Cos(angle) * distance, groupCenter.y + (float)Math.Sin(angle) * distance);
+
+                    if (position.x < 1 || position.x > (size.x * mapOptions.meshResolution - 1) || position.y < 1 || position.y > (size.y * mapOptions.meshResolution - 1)) {
+                        break;
+                    }
+
                     TreePositions.Add(new Vector3(
-                        groupCenter.x + (float)Math.Cos(angle) *  distance,
+                        position.x,
                         GetHeightAt(new Vector2Int(
-                            (int)((float)((groupCenter.x + Math.Cos(angle) *  distance) / (mapOptions.size.x * mapOptions.meshResolution)) * mapOptions.size.x),
-                            (int)((float)((groupCenter.y + Math.Sin(angle) * distance) / (mapOptions.size.y * mapOptions.meshResolution)) * mapOptions.size.y)
+                            (int)(position.x / mapOptions.meshResolution),
+                            (int)(position.y / mapOptions.meshResolution)
                         )),
-                        groupCenter.y + (float)Math.Sin(angle) * distance
+                        position.y
                     ));
                 }
             }
