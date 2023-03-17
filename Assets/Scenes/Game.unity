@@ -4656,7 +4656,7 @@ MonoBehaviour:
   drops: {fileID: 0}
   hitCooldown: 0
   hitDelay: 0
-  inventoryBearer: {fileID: 0}
+  inventoryBearer: {fileID: 11400000, guid: d4505823aeb0d834ca5caeb6ec8f14a7, type: 2}
 --- !u!54 &1489979608
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6201,7 +6201,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2610b2db511141f4a27156f7f38866e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verticies: []
   xSize: 250
   zSize: 250
   pNoiseXMult: 7.5
