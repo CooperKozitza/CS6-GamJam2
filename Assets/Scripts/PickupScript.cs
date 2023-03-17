@@ -60,8 +60,12 @@ public class PickupScript : MonoBehaviour
                 //Debug.Log("Facing Resource");
                 if (Input.GetMouseButtonDown(0) && hitCooldown == 0)
                 {
-                    Hit(pickup);
-                    hitCooldown = hitDelay;
+                    //Debug.Log("Facing Resource");
+                    if (Input.GetKey(KeyCode.F) && hitCooldown == 0)
+                    {
+                        Hit(pickup);
+                        hitCooldown = hitDelay;
+                    }
                 }
             }
         }
