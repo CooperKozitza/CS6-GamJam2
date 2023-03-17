@@ -44,15 +44,17 @@ public class PickupScript : MonoBehaviour
 
         if (Physics.Raycast(transform.position, rayDirection.normalized, out hit, length))
         {
-            GameObject pickup = hit.transform.parent.gameObject;
-            //Debug.Log(pickup.name);
-            if (pickup.CompareTag("Interactable"))
-            {
-                //Debug.Log("Facing Resource");
-                if (Input.GetKey(KeyCode.F) && hitCooldown == 0)
+            if (hit.transform.gameObject.CompareTag("Interactable")) {
+                GameObject pickup = hit.transform.parent.gameObject;
+                //Debug.Log(pickup.name);
+                if (pickup.CompareTag("Interactable"))
                 {
-                    Hit(pickup);
-                    hitCooldown = hitDelay;
+                    //Debug.Log("Facing Resource");
+                    if (Input.GetKey(KeyCode.F) && hitCooldown == 0)
+                    {
+                        Hit(pickup);
+                        hitCooldown = hitDelay;
+                    }
                 }
             }
         }
@@ -71,14 +73,17 @@ public class PickupScript : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        InventoryPickup pickup = collision.transform.parent.GetComponent<InventoryPickup>();
+        if (collision.transform.gameObject.CompareTag("Interactable"))
+        {
+            InventoryPickup pickup = collision.transform.parent.GetComponent<InventoryPickup>();
 
-        Debug.Log(pickup == null ? "nope" : "yup");
+            Debug.Log(pickup == null ? "nope" : "yup");
 
-        if (pickup == null) return;
+            if (pickup == null) return;
 
-        GetComponent<InventoryBearer>().pickup(pickup.item, 1);
+            GetComponent<InventoryBearer>().pickup(pickup.item, 1);
 
-        collision.gameObject.SetActive(false);
+            collision.gameObject.SetActive(false);
+        }
     }
 }
