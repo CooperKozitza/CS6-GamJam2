@@ -44,6 +44,7 @@ namespace Terrain
 
         private MeshFilter meshFilter;
         private MeshRenderer meshRenderer;
+        private MeshCollider meshCollider;
 
         public Map SetMeshFilter(MeshFilter filter) {
             meshFilter = filter;
@@ -55,16 +56,23 @@ namespace Terrain
             return instance;
         }
 
-        private MeshData mesh;
+        public Map SetMeshCollider(MeshCollider meshCollider) {
+            this.meshCollider = meshCollider;
+            return instance;
+        }
+
+        private MeshData meshData;
 
         public Map GenerateMesh() {
-            mesh = MeshGenerator.GenerateMeshData(heightMap, mapOptions.amplitude, mapOptions.meshResolution);
+            meshData = MeshGenerator.GenerateMeshData(heightMap, mapOptions.noiseAmplitude, mapOptions.meshResolution, mapOptions.seaLevel);
             return instance;
         }
 
         public void DrawMesh() {
-            meshFilter.sharedMesh = mesh.CreateMesh();
-            meshRenderer.sharedMaterial.mainTexture = TextureGenerator.CreateTexture(heightMap);
+            Mesh mesh = meshData.CreateMesh();
+            meshFilter.sharedMesh = mesh;
+            meshCollider.sharedMesh = mesh;
+            //meshRenderer.sharedMaterial.mainTexture = TextureGenerator.CreateTexture(heightMap);
         }
 
         //-----------------------------------------------------
@@ -72,23 +80,40 @@ namespace Terrain
 
         private float[,] heightMap;
 
-        public Map GenerateTerrain(int octaves = 3) {
+        public Map GenerateTerrain() {
             heightMap = new float[size.x, size.y];
-            for (short octave = 1; octave < octaves + 1; octave++) {
+            for (short octave = 1; octave < mapOptions.noiseOctaves + 1; octave++) 
+            {
                 Vector2 sampleAreaOffset = new(Random.Range(0, 100f), Random.Range(0, 100f));
-                for (short i = 0; i < (size.x * size.y); i ++) {
-                    heightMap[i % size.x, i / size.y] += Mathf.PerlinNoise(
-                        (sampleAreaOffset.x + (i % size.x * (float)(octave * octave) / mapOptions.noiseZoom)),
-                        (sampleAreaOffset.y + (i / size.y * (float)(octave * octave) / mapOptions.noiseZoom))
-                    ) / (float)Math.Pow(2, octave);
+                for (int y = 0; y < size.y; y++)
+                {
+                    for (int x = 0; x < size.x; x++)
+                    {
+                        heightMap[x, y] += Mathf.PerlinNoise(
+                            (sampleAreaOffset.x + (x * (float)(octave * octave) / mapOptions.noiseZoom)),
+                            (sampleAreaOffset.y + (y * (float)(octave * octave) / mapOptions.noiseZoom))
+                        ) / (float)Math.Pow(2, octave);
+                    }
                 }
             }
+            for (int y = 0; y < size.y; y++)
+            {
+                for (int x = 0; x < size.x; x++)
+                {
+                    heightMap[x, y] = (float)(Math.Pow(heightMap[x, y] + 1, mapOptions.noiseExponent) - 1);
+                }
+            }
+
+
             return instance;
         }
 
         public float GetHeightAt(Vector2Int position) {
             if (position.x > 0 && position.x < size.x && position.y > 0 && position.y < size.y) {
-                return heightMap[position.x, position.y] * mapOptions.amplitude;
+                if (heightMap[position.x, position.y] * mapOptions.noiseAmplitude > mapOptions.seaLevel) {
+                    return heightMap[position.x, position.y] * mapOptions.noiseAmplitude - mapOptions.seaLevel;
+                }
+                else return 0;
             }
             return 0;
         }
@@ -111,19 +136,16 @@ namespace Terrain
                     float distance = Random.Range(0, mapOptions.spread);
 
                     Vector2 position = new(groupCenter.x + (float)Math.Cos(angle) * distance, groupCenter.y + (float)Math.Sin(angle) * distance);
-
-                    if (position.x < 1 || position.x > (size.x * mapOptions.meshResolution - 1) || position.y < 1 || position.y > (size.y * mapOptions.meshResolution - 1)) {
+                    
+                    float height = GetHeightAt(new Vector2Int((int)(position.x / mapOptions.meshResolution), (int)(position.y / mapOptions.meshResolution)));
+                    if (height <= 1) {
+                        i--;
                         break;
                     }
 
-                    TreePositions.Add(new Vector3(
-                        position.x,
-                        GetHeightAt(new Vector2Int(
-                            (int)(position.x / mapOptions.meshResolution),
-                            (int)(position.y / mapOptions.meshResolution)
-                        )),
-                        position.y
-                    ));
+                    Debug.Log(height);
+
+                    TreePositions.Add(new Vector3(position.x, height, position.y));
                 }
             }
             return instance;
@@ -146,10 +168,13 @@ namespace Terrain
         // Terrain
         [Range(1, 20)]
         public int noiseOctaves;
-        [Range(10, 100)]
+        [Range(10, 150)]
         public float noiseZoom;
-        [Range(1, 100)]
-        public float amplitude;
+        [Range(1, 50)]
+        public float noiseAmplitude;
+        [Range(0, 4)]
+        public int noiseExponent;
+
 
         [Space(10)]
 

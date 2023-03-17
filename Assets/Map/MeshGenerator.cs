@@ -5,15 +5,19 @@ using System.Linq;
 
 namespace Terrain {
     public static class MeshGenerator {
-        public static MeshData GenerateMeshData(float[,] heightMap, float amplitude = 5, int scale = 1) {
+        public static MeshData GenerateMeshData(float[,] heightMap, float amplitude = 5, int scale = 1, float seaLevel = 0) {
             Vector2Int size = new(heightMap.GetLength(0), heightMap.GetLength(1));
 
             MeshData data = new(size.x, size.y);
 
-            short i = 0;
-            for (short y = 0; y < size.y; y++) {
-                for (short x = 0; x < size.x; x++) {
-                    data.vertices[y * size.x + x] = new Vector3(x, heightMap[x, y] * amplitude, y);
+            int i = 0;
+            for (int y = 0; y < size.y; y++) {
+                for (int x = 0; x < size.x; x++) {
+                    float height = heightMap[x, y] * amplitude;
+
+                    height = height < seaLevel ? 0 : height - seaLevel;
+
+                    data.vertices[y * size.x + x] = new Vector3(x, height, y);
                     data.uvs[i] = new Vector2(x / (float)size.x, y / (float)size.y);
 
                     if (x < size.x - scale && y < size.y - scale) {

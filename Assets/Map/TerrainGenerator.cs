@@ -4,10 +4,11 @@ using UnityEngine;
 
 using Terrain;
 
-public class TerainGenerator : MonoBehaviour
+public class TerrainGenerator : MonoBehaviour
 {
     public MeshFilter meshFilter;
     public MeshRenderer meshRenderer;
+    public MeshCollider meshCollider;
 
     [Space(10)]
     public MapOptions options;
@@ -21,7 +22,9 @@ public class TerainGenerator : MonoBehaviour
         _map.Configure(options)
             .SetMeshFilter(meshFilter)
             .SetMeshRenderer(meshRenderer)
-            .GenerateTerrain(10)
+            .SetMeshCollider(meshCollider);
+
+        _map.GenerateTerrain()
             .GenerateMesh()
             .DrawMesh();
 
