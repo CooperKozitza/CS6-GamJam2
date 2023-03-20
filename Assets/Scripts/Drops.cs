@@ -13,6 +13,7 @@ public class Drops : MonoBehaviour
 
     public DropItem[] dropItems;
     public Transform dropLocation;
+    public int dropAmount;
 
     // Start is called before the first frame update
     void Start()
@@ -38,8 +39,14 @@ public class Drops : MonoBehaviour
             float chance = Random.Range(0, 1f);
             if (chance <= dropItem.dropChance)
             {
-                Instantiate(dropItem.model, dropLocation);
+                Instantiate(dropItem.model, new Vector3(dropLocation.position.x, dropLocation.position.y, dropLocation.position.z), Quaternion.identity);
+                
             }
+        }
+        dropAmount--;
+        if (dropAmount <= 0)
+        {
+            Destroy(gameObject);
         }
     }
 }
