@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Terrain {
     public static class MeshGenerator {
-        public static MeshData GenerateMeshData(float[,] heightMap, float amplitude = 5, int scale = 1, float seaLevel = 0) {
+        public static MeshData GenerateMeshDataWithHeight(float[,] heightMap, float amplitude = 5, int scale = 1, float seaLevel = 0) {
             Vector2Int size = new(heightMap.GetLength(0), heightMap.GetLength(1));
 
             MeshData data = new(size.x, size.y);
@@ -17,12 +17,35 @@ namespace Terrain {
 
                     height = height < seaLevel ? 0 : height - seaLevel;
 
-                    data.vertices[y * size.x + x] = new Vector3(x, height, y);
+                    data.vertices[y * size.x + x] = new Vector3(x * scale, height, y * scale);
                     data.uvs[i] = new Vector2(x / (float)size.x, y / (float)size.y);
 
-                    if (x < size.x - scale && y < size.y - scale) {
-                        data.AddTriangle(i, i + size.x + scale, i + size.x);
-                        data.AddTriangle(i + size.x + scale, i, i + scale);
+                    if (x < size.x - 1 && y < size.y - 1) {
+                        data.AddTriangle(i, i + size.x + 1, i + size.x);
+                        data.AddTriangle(i + size.x + 1, i, i + 1);
+                    }
+                    i++;
+                }
+            }
+            return data;
+        }
+
+        public static MeshData GenerateMeshData(Vector2Int size, float height, float scale = 1)
+        {
+            MeshData data = new(size.x, size.y);
+
+            int i = 0 ;
+            for (int y = 0; y < size.y; y++)
+            {
+                for (int x = 0; x < size.x; x++)
+                {
+                    data.vertices[y * size.x + x] = new Vector3(x * scale, height, y * scale);
+                    data.uvs[i] = new Vector2(x / (float)size.x, y / (float)size.y);
+
+                    if (x < size.x - 1 && y < size.y - 1)
+                    {
+                        data.AddTriangle(i, i + size.x + 1, i + size.x);
+                        data.AddTriangle(i + size.x + 1, i, i + 1);
                     }
                     i++;
                 }
