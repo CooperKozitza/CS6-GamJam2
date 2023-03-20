@@ -24,6 +24,12 @@ public class InventoryBearer : ScriptableObject
         return inventoryItems.Find(x => x.itemData.id == match.id && x.itemData.canStack == true && x.count == x.itemData.maxStackCount);
     }
 
+    public void ConsumeItem(InventoryItem item)
+    {
+        if (item.type != InventoryItem.Type.Consumable) return;
+        inventoryItems.Remove(inventoryItems.Find(x => x.itemData.uid == item.uid));
+    }
+
     public void pickup(InventoryItem item, int pickupCount = 1)
     {
         Item existingItem = fetchItem(item);

@@ -14,6 +14,7 @@ public class TerrainGenerator : MonoBehaviour
     public MapOptions options;
 
     public GameObject treePrefab;
+    public GameObject rockPrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -28,12 +29,21 @@ public class TerrainGenerator : MonoBehaviour
             .GenerateMesh()
             .DrawMesh();
 
-        GameObject parent = new("trees");
+        GameObject treeParent = new("trees");
 
-        _map.DetermineTreePositions();
-        foreach(Vector3 position in _map.TreePositions) {
+        _map.DetermineObjectPositions();
+        foreach(Vector3 position in _map.ObjectPositions) {
             GameObject tree = Instantiate(treePrefab, position, treePrefab.transform.rotation);
-            tree.transform.SetParent(parent.transform);
+            tree.transform.SetParent(treeParent.transform);
+        }
+
+        GameObject rockParent = new("rocks");
+
+        _map.DetermineObjectPositions();
+        foreach (Vector3 position in _map.ObjectPositions)
+        {
+            GameObject tree = Instantiate(rockPrefab, position, rockPrefab.transform.rotation);
+            tree.transform.SetParent(rockParent.transform);
         }
     }
 }
