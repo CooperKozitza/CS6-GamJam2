@@ -64,7 +64,7 @@ namespace Terrain
         private MeshData meshData;
 
         public Map GenerateMesh() {
-            meshData = MeshGenerator.GenerateMeshData(heightMap, mapOptions.noiseAmplitude, mapOptions.meshResolution, mapOptions.seaLevel);
+            meshData = MeshGenerator.GenerateMeshDataWithHeight(heightMap, mapOptions.noiseAmplitude, mapOptions.meshResolution, mapOptions.seaLevel);
             return instance;
         }
 
@@ -121,12 +121,12 @@ namespace Terrain
         //-----------------------------------------------------
         // Trees
 
-        public List<Vector3> TreePositions { get; private set; }
+        public List<Vector3> ObjectPositions { get; private set; }
 
-        public Map DetermineTreePositions() {
-            TreePositions = new();
+        public Map DetermineObjectPositions() {
+            ObjectPositions = new();
 
-            for (short i = 0; i < mapOptions.groupCount; i++) {
+            for (int i = 0; i < mapOptions.groupCount; i++) {
                 Vector2 groupCenter = new Vector2(Random.Range(0, (float)size.x), Random.Range(0, (float)size.y));
 
                 int groupSize = Random.Range(0, mapOptions.groupSize);
@@ -145,7 +145,7 @@ namespace Terrain
 
                     Debug.Log(height);
 
-                    TreePositions.Add(new Vector3(position.x, height, position.y));
+                    ObjectPositions.Add(new Vector3(position.x, height, position.y));
                 }
             }
             return instance;
@@ -189,7 +189,7 @@ namespace Terrain
         // Trees
         [Range(1, 10)]
         public float spread;
-        [Range(0, 100)]
+        [Range(0, 400)]
         public int groupCount;
         [Range(0, 10)]
         public int groupSize;
