@@ -3109,6 +3109,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tree
       objectReference: {fileID: 0}
+    - target: {fileID: 2427942030450535424, guid: cf69c292d0c7b404e93532a40117a29c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3522550015241257933, guid: cf69c292d0c7b404e93532a40117a29c,
         type: 3}
       propertyPath: m_RootOrder
@@ -3166,6 +3171,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7252575957554021885, guid: cf69c292d0c7b404e93532a40117a29c,
         type: 3}
+      propertyPath: dropAmount
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7252575957554021885, guid: cf69c292d0c7b404e93532a40117a29c,
+        type: 3}
       propertyPath: dropItems.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -3178,6 +3188,11 @@ PrefabInstance:
     - target: {fileID: 7252575957554021885, guid: cf69c292d0c7b404e93532a40117a29c,
         type: 3}
       propertyPath: dropItems.Array.data[2].dropChance
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7639730050841106793, guid: cf69c292d0c7b404e93532a40117a29c,
+        type: 3}
+      propertyPath: m_Convex
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -4699,7 +4714,7 @@ MonoBehaviour:
   cam: {fileID: 2010647366}
   drops: {fileID: 0}
   hitCooldown: 0
-  hitDelay: 0
+  hitDelay: 1
   inventoryBearer: {fileID: 11400000, guid: d4505823aeb0d834ca5caeb6ec8f14a7, type: 2}
 --- !u!54 &1489979608
 Rigidbody:
@@ -5730,6 +5745,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5951502980432695446, guid: 27ea8f71437754a00a1cccd9cfd822d3,
+        type: 3}
+      propertyPath: m_Convex
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27ea8f71437754a00a1cccd9cfd822d3, type: 3}
