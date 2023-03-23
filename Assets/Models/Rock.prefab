@@ -1,0 +1,180 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &30596154415961604
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5722548134102083223}
+  - component: {fileID: 6477625470312459878}
+  m_Layer: 0
+  m_Name: Rock
+  m_TagString: Interactable
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5722548134102083223
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 30596154415961604}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3268904146324318322}
+  - {fileID: 7287731111664007234}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6477625470312459878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 30596154415961604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 505c050a4672f4e3da6a823362659315, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropItems:
+  - model: {fileID: 7004960598444569328, guid: 83f2a6f48c211433ab265c709422c1a3, type: 3}
+    dropChance: 1
+  dropLocation: {fileID: 3268904146324318322}
+  dropAmount: 5
+  drop: 0
+--- !u!1 &6684615422942699838
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3268904146324318322}
+  m_Layer: 0
+  m_Name: DropLocation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3268904146324318322
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6684615422942699838}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.01, y: 1.26, z: 2.86}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5722548134102083223}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &4376875034496848027
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 5722548134102083223}
+    m_Modifications:
+    - target: {fileID: 4269214801701150963, guid: 5e11ea82661bf4abdb655f12aba3e286,
+        type: 3}
+      propertyPath: m_Name
+      value: New Rock
+      objectReference: {fileID: 0}
+    - target: {fileID: 6457863292277647577, guid: 5e11ea82661bf4abdb655f12aba3e286,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6457863292277647577, guid: 5e11ea82661bf4abdb655f12aba3e286,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6457863292277647577, guid: 5e11ea82661bf4abdb655f12aba3e286,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6457863292277647577, guid: 5e11ea82661bf4abdb655f12aba3e286,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6457863292277647577, guid: 5e11ea82661bf4abdb655f12aba3e286,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6457863292277647577, guid: 5e11ea82661bf4abdb655f12aba3e286,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6457863292277647577, guid: 5e11ea82661bf4abdb655f12aba3e286,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6457863292277647577, guid: 5e11ea82661bf4abdb655f12aba3e286,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6457863292277647577, guid: 5e11ea82661bf4abdb655f12aba3e286,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6457863292277647577, guid: 5e11ea82661bf4abdb655f12aba3e286,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6457863292277647577, guid: 5e11ea82661bf4abdb655f12aba3e286,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5e11ea82661bf4abdb655f12aba3e286, type: 3}
+--- !u!1 &541140699316842600 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4269214801701150963, guid: 5e11ea82661bf4abdb655f12aba3e286,
+    type: 3}
+  m_PrefabInstance: {fileID: 4376875034496848027}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &5951502980432695446
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 541140699316842600}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -5495902117074765545, guid: 96ef9eb78d5aa47df8449941f1742083, type: 3}
+--- !u!4 &7287731111664007234 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6457863292277647577, guid: 5e11ea82661bf4abdb655f12aba3e286,
+    type: 3}
+  m_PrefabInstance: {fileID: 4376875034496848027}
+  m_PrefabAsset: {fileID: 0}
