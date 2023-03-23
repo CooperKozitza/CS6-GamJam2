@@ -30,7 +30,7 @@ public class InventoryBearer : ScriptableObject
         inventoryItems.Remove(inventoryItems.Find(x => x.itemData.uid == item.uid));
     }
 
-    public void pickup(InventoryItem item, int pickupCount = 1)
+    public void Pickup(InventoryItem item, int pickupCount = 1)
     {
         Item existingItem = FetchItem(item);
 
