@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     public Rigidbody rb;
     public bool onGround;
     public float jumpForce;
+    public float jumpCooldown;
+    bool readyToJump = true;
 
     // Start is called before the first frame update
     void Start()
@@ -33,10 +35,16 @@ public class PlayerController : MonoBehaviour
             onGround = false;
         }
 
-        if (Input.GetButton("Jump") && onGround)
+        if (Input.GetButton("Jump") && onGround && readyToJump)
         {
             rb.AddForce(new Vector3(0, jumpForce, 0));
+            readyToJump = false;
+            Invoke(nameof(ResetJump), jumpCooldown);
         }
         rb.AddRelativeForce(Input.GetAxisRaw("Horizontal") * speed, 0.0F, Input.GetAxisRaw("Vertical") * speed);
+    }
+    private void ResetJump()
+    {
+        readyToJump = true;
     }
 }

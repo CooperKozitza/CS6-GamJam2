@@ -48,6 +48,9 @@ MonoBehaviour:
   speed: 10
   mousePos: {x: 0, y: 0, z: 0}
   rotationSpeed: 1
+  rb: {fileID: 0}
+  onGround: 0
+  jumpForce: 0
 --- !u!1 &6506205533900064575
 GameObject:
   m_ObjectHideFlags: 0
