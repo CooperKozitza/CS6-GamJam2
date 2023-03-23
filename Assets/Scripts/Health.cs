@@ -9,10 +9,10 @@ public class Health : MonoBehaviour
     [SerializeField]
     public int playerHP;
 
-    float playerHunger;
+    public float playerHunger;
 
     [SerializeField]
-    float maximumPlayerHunger;
+    public float maximumPlayerHunger;
 
     [SerializeField]
     float playerHungerDrainMultiplier;
@@ -28,6 +28,8 @@ public class Health : MonoBehaviour
 
     bool hungerDamaging = false;
 
+    public float hungerHeal;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,7 +41,7 @@ public class Health : MonoBehaviour
     {
         healthDisplay.text = playerHP.ToString();
 
-        if(playerHunger > 0)
+        if (playerHunger > 0)
         {
             hungerDamaging = false;
 
@@ -77,5 +79,10 @@ public class Health : MonoBehaviour
     private void HungerDamage()
     {
         playerHP--;
+    }
+
+    private void Eat()
+    {
+        playerHunger += hungerHeal;
     }
 }

@@ -547,6 +547,8 @@ MonoBehaviour:
     groupCount: 100
     groupSize: 8
   treePrefab: {fileID: 1018292216}
+  rockPrefab: {fileID: 30596154415961604, guid: 27ea8f71437754a00a1cccd9cfd822d3,
+    type: 3}
 --- !u!4 &107938192
 Transform:
   m_ObjectHideFlags: 0
@@ -4745,11 +4747,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerHP: 1000
+  playerHunger: 0
   maximumPlayerHunger: 1000
   playerHungerDrainMultiplier: 1
   hungerDamageTime: 5
   healthDisplay: {fileID: 865792155}
   hungerDisplay: {fileID: 886726900}
+  hungerHeal: 0
 --- !u!1 &1545342248
 GameObject:
   m_ObjectHideFlags: 0
@@ -5694,6 +5698,11 @@ PrefabInstance:
     - target: {fileID: 5722548134102083223, guid: 27ea8f71437754a00a1cccd9cfd822d3,
         type: 3}
       propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5722548134102083223, guid: 27ea8f71437754a00a1cccd9cfd822d3,
+        type: 3}
+      propertyPath: m_LocalScale.x
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5722548134102083223, guid: 27ea8f71437754a00a1cccd9cfd822d3,
@@ -6779,8 +6788,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d18efcedbc85c4fe78ed5e9be48ca558, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meshFilter: {fileID: 1981433822}
-  size: {x: 1000, y: 1000}
 --- !u!1 &2010647366
 GameObject:
   m_ObjectHideFlags: 0
