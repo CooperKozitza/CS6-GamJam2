@@ -12,13 +12,20 @@ public class Drops : MonoBehaviour
     }
 
     public DropItem[] dropItems;
-    public Transform dropLocation;
+    public Vector3 dropLocation;
     public int dropAmount;
 
     // Start is called before the first frame update
     void Start()
     {
-        //dropLocation = transform.GetChild(1).transform;
+        dropAmount = (int)Random.Range(3f, 6f);
+        if (name == "Rock(Clone)")
+        {
+            dropLocation = new Vector3(transform.position.x, transform.position.y + 2f, transform.position.z);
+        } else if (name == "Tree(Clone)")
+        {
+            dropLocation = new Vector3(transform.position.x + 1.5f, transform.position.y + 2f, transform.position.z);
+        }
     }
 
     // Update is called once per frame
@@ -39,7 +46,7 @@ public class Drops : MonoBehaviour
             float chance = Random.Range(0, 1f);
             if (chance <= dropItem.dropChance)
             {
-                Instantiate(dropItem.model, new Vector3(dropLocation.position.x, dropLocation.position.y, dropLocation.position.z), Quaternion.identity);
+                Instantiate(dropItem.model, new Vector3(dropLocation.x, dropLocation.y, dropLocation.z), Quaternion.identity);
                 
             }
         }

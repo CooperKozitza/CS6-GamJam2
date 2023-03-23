@@ -33,8 +33,9 @@ public class TerrainGenerator : MonoBehaviour
 
         _map.DetermineObjectPositions();
         foreach(Vector3 position in _map.ObjectPositions) {
-            GameObject tree = Instantiate(treePrefab, position, treePrefab.transform.rotation);
+            GameObject tree = Instantiate(treePrefab, position, new Quaternion(Random.Range(0f, 360f), Random.Range(0f, 360f), 0, 0));
             tree.transform.SetParent(treeParent.transform);
+            tree.transform.rotation = Quaternion.AngleAxis(Random.Range(0f,360f), Vector3.up);
         }
 
         GameObject rockParent = new("rocks");
@@ -42,8 +43,9 @@ public class TerrainGenerator : MonoBehaviour
         _map.DetermineObjectPositions();
         foreach (Vector3 position in _map.ObjectPositions)
         {
-            GameObject tree = Instantiate(rockPrefab, position, rockPrefab.transform.rotation);
+            GameObject tree = Instantiate(rockPrefab, position, new Quaternion(0, Random.Range(0f, 360f), 0, 0));
             tree.transform.SetParent(rockParent.transform);
+            tree.transform.rotation = Quaternion.Euler(Random.Range(0f, 360f), Random.Range(0f, 360f), Random.Range(0f, 360f));
         }
     }
 }
