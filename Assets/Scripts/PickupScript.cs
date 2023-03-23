@@ -88,7 +88,7 @@ public class PickupScript : MonoBehaviour
 
             if (pickup == null) return;
 
-            inventoryBearer.pickup(pickup.item, 1);
+            inventoryBearer.Pickup(pickup.item, 1);
 
             Destroy(collision.gameObject.transform.parent.gameObject);
         }
