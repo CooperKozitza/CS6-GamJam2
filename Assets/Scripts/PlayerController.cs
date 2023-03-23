@@ -9,8 +9,8 @@ public class PlayerController : MonoBehaviour
     public float rotationSpeed = 1;
     public Rigidbody rb;
     public bool onGround;
-    public float jumpForce;
-    public float jumpCooldown;
+    public float jumpForce = 250;
+    public float jumpCooldown = 1;
     bool readyToJump = true;
 
     // Start is called before the first frame update
