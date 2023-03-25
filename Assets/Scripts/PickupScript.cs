@@ -84,7 +84,7 @@ public class PickupScript : MonoBehaviour
         {
             InventoryPickup pickup = collision.transform.GetComponentInParent<InventoryPickup>();
 
-            Debug.Log(pickup == null ? "nope" : "yup");
+            //Debug.Log(pickup == null ? "nope" : "yup");
 
             if (pickup == null) return;
 
