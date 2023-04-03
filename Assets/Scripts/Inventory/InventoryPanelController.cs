@@ -15,10 +15,13 @@ public class InventoryPanelController : MonoBehaviour
             if (visible)
             {
                 StartCoroutine(fadeIn());
+                Cursor.lockState = CursorLockMode.Confined;
+
             }
             else
             {
                 StartCoroutine(fadeOut());
+                Cursor.lockState = CursorLockMode.Locked;
             }
         }
     }

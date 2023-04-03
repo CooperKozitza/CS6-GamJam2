@@ -81,7 +81,7 @@ public class Health : MonoBehaviour
         playerHP--;
     }
 
-    private void Eat()
+    public void Eat()
     {
         playerHunger += hungerHeal;
     }
