@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
 
@@ -25,6 +26,8 @@ public class Health : MonoBehaviour
 
     [SerializeField]
     private TextMeshProUGUI hungerDisplay;
+
+    public Slider slider;
 
     bool hungerDamaging = false;
 
@@ -58,6 +61,8 @@ public class Health : MonoBehaviour
 
             hungerDamaging = true;
         }
+
+        slider.value = playerHP;
     }
 
 
