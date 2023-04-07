@@ -11,6 +11,7 @@ public class GetItem : MonoBehaviour
     public List<GameObject> slots = new List<GameObject>();
     public GameObject slot;
     public GameObject list;
+    public GameObject player;
 
     // Start is called before the first frame update
     void Start()
@@ -32,8 +33,14 @@ public class GetItem : MonoBehaviour
     {
         GameObject clickedSlot = EventSystem.current.currentSelectedGameObject;
         Debug.Log(clickedSlot.transform.parent.name.ToString());
-        slot = slots[Convert.ToInt32(clickedSlot.transform.parent.name)];
+        int index = Convert.ToInt32(clickedSlot.transform.parent.name);
+        slot = slots[index];
 
-        if (slot.)
+        bool didEat = inventory.EatFood(index);
+
+        if (didEat)
+        {
+            player.GetComponent<Health>().Eat();
+        }
     }
 }

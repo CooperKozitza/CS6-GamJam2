@@ -24,7 +24,7 @@ public class InventoryItem : ScriptableObject
 
     public enum Type
     {
-        Consumable, Tool, Structure, Weapon, Miscellaneous
+        Consumable, Tool, Structure, Weapon, Edible, Miscellaneous
     }
 
     //====================================================================================================

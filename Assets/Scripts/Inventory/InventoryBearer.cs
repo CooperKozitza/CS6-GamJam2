@@ -24,10 +24,18 @@ public class InventoryBearer : ScriptableObject
         return inventoryItems.Find(x => x.itemData.id == match.id && x.itemData.canStack == true && x.count == x.itemData.maxStackCount);
     }
 
-    public void ConsumeItem(InventoryItem item)
+    public bool EatFood(int index)
     {
-        if (item.type != InventoryItem.Type.Consumable) return;
-        inventoryItems.Remove(inventoryItems.Find(x => x.itemData.uid == item.uid));
+        Item item = inventoryItems[index];
+        if (item.itemData.type == InventoryItem.Type.Edible && item.count > 0)
+        {
+            item.count--;
+            return true;
+        } else
+        {
+            return false;
+        }
+
     }
 
     public void Pickup(InventoryItem item, int pickupCount = 1)
