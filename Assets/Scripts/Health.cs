@@ -29,6 +29,8 @@ public class Health : MonoBehaviour
 
     public Slider slider;
 
+    public Slider hungerSlider;
+
     bool hungerDamaging = false;
 
     public float hungerHeal;
@@ -63,6 +65,8 @@ public class Health : MonoBehaviour
         }
 
         slider.value = playerHP;
+
+        hungerSlider.value = playerHunger;
     }
 
 
