@@ -30,6 +30,10 @@ public class InventoryBearer : ScriptableObject
         if (item.itemData.type == InventoryItem.Type.Edible && item.count > 0)
         {
             item.count--;
+            if (item.count == 0)
+            {
+                item = null;
+            }
             return true;
         } else
         {

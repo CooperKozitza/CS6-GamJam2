@@ -1301,6 +1301,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   visible: 0
   panel: {fileID: 212325578}
+  player: {fileID: 0}
 --- !u!114 &295819797
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5508,6 +5509,7 @@ MonoBehaviour:
   slots: []
   slot: {fileID: 0}
   list: {fileID: 2080859536}
+  player: {fileID: 1489979602}
 --- !u!4 &1653399785
 Transform:
   m_ObjectHideFlags: 0
