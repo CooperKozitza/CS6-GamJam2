@@ -143,7 +143,7 @@ namespace Terrain
                         break;
                     }
 
-                    Debug.Log(height);
+//                    Debug.Log(height);
 
                     ObjectPositions.Add(new Vector3(position.x, height, position.y));
                 }

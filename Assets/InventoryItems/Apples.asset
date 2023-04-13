@@ -16,7 +16,7 @@ MonoBehaviour:
   mass: 0
   canStack: 1
   maxStackCount: 1000
-  type: 0
+  type: 4
   itemName: Apples
   description: an apple.
   id: 0
