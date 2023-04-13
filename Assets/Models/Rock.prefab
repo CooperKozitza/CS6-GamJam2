@@ -49,7 +49,7 @@ MonoBehaviour:
   dropItems:
   - model: {fileID: 7004960598444569328, guid: 83f2a6f48c211433ab265c709422c1a3, type: 3}
     dropChance: 1
-  dropLocation: {fileID: 3268904146324318322}
+  dropLocation: {x: 0, y: 0, z: 0}
   dropAmount: 5
   drop: 0
 --- !u!1 &6684615422942699838
@@ -113,7 +113,7 @@ PrefabInstance:
     - target: {fileID: 6457863292277647577, guid: 5e11ea82661bf4abdb655f12aba3e286,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6457863292277647577, guid: 5e11ea82661bf4abdb655f12aba3e286,
         type: 3}
