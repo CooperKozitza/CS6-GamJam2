@@ -51,6 +51,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   onGround: 0
   jumpForce: 0
+  jumpCooldown: 1
 --- !u!1 &6506205533900064575
 GameObject:
   m_ObjectHideFlags: 0
@@ -64,7 +65,7 @@ GameObject:
   - component: {fileID: 7902556948651361322}
   - component: {fileID: 1397403882608355886}
   - component: {fileID: 8354693920046484863}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Capsule
   m_TagString: Player
   m_Icon: {fileID: 0}
