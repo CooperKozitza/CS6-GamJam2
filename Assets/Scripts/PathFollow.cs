@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class PathFollow : MonoBehaviour
 {
@@ -8,17 +9,27 @@ public class PathFollow : MonoBehaviour
     public float speed = 1.0f;
     public Transform pathParent;
 
+    public Transform playerTransform;
+
     private Vector3[] path { get; set; }
+    public LayerMask mask;
+
+    private Coroutine followPathCoroutine;
+
+    private NavMeshAgent agent;
 
     void Awake()
     {
+        agent = GetComponent<NavMeshAgent>();
+        agent.enabled = false;
+
         path = new Vector3[pathParent.childCount];
         for (int i = 0; i < path.Length; i++)
         {
             path[i] = pathParent.GetChild(i).position;
         }
 
-        StartCoroutine(FollowPath());
+        followPathCoroutine = StartCoroutine(FollowPath());
     }
 
     private IEnumerator FollowPath()
@@ -50,5 +61,39 @@ public class PathFollow : MonoBehaviour
         }
 
         Gizmos.DrawLine(previousPosition, startPosition);
+    }
+
+    void Update()
+    {
+
+        Ray ray = new Ray(transform.position, transform.forward);
+        RaycastHit hitInfo;
+
+        if (Physics.Raycast(ray, out hitInfo, 100, mask, QueryTriggerInteraction.Ignore))
+        {
+            print(hitInfo.collider.gameObject.name);
+            if (hitInfo.collider.gameObject.CompareTag("Player"))
+            {
+                Debug.DrawLine(ray.origin, hitInfo.point, Color.red);
+                StopCoroutine(followPathCoroutine);
+
+                agent.enabled = true;
+                InvokeRepeating("followPlayer", 0f, 0.5f);
+            }
+            else
+            {
+                Debug.DrawLine(ray.origin, hitInfo.point, Color.yellow);
+            }
+        }
+        else
+        {
+            Debug.DrawLine(ray.origin, ray.origin + ray.direction * 100, Color.green);
+        }
+
+    }
+
+    void followPlayer()
+    {
+        agent.destination = playerTransform.position;
     }
 }
