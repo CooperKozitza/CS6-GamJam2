@@ -78,7 +78,7 @@ public class Health : MonoBehaviour
         {
             playerHP = playerHP - damageMulti;
             Debug.Log(playerHP);
-            if (playerHP == 0)
+            if (playerHP <= 0)
             {
                 healthDisplay.text = playerHP.ToString();
                 hungerDisplay.text = ((int)playerHunger).ToString();
