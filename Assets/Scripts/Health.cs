@@ -10,6 +10,8 @@ public class Health : MonoBehaviour
     [SerializeField]
     public int playerHP;
 
+    public int damageMulti;
+
     public float playerHunger;
 
     [SerializeField]
@@ -74,7 +76,7 @@ public class Health : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Acid"))
         {
-            playerHP--;
+            playerHP = playerHP - damageMulti;
             Debug.Log(playerHP);
             if (playerHP == 0)
             {

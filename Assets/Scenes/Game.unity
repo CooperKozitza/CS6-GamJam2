@@ -5845,6 +5845,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerHP: 100
+  damageMulti: 10
   playerHunger: 100
   maximumPlayerHunger: 100
   playerHungerDrainMultiplier: 1
