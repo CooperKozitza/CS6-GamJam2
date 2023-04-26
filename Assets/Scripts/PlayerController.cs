@@ -12,6 +12,10 @@ public class PlayerController : MonoBehaviour
     public float jumpForce = 250;
     public float jumpCooldown = 1;
     bool readyToJump = true;
+    public GameObject camOrient;
+    public GameObject playerLookAt;
+    public ViewChanger viewChanger;
+    bool thirdPerson = false;
 
     // Start is called before the first frame update
     void Start()
@@ -22,9 +26,20 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 movement = transform.TransformDirection(new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized * speed);
-        rb.velocity = new Vector3(movement.x, rb.velocity.y, movement.z);
-
+        thirdPerson = viewChanger.thirdPerson;
+        if (thirdPerson)
+        {
+            Vector3 movement = transform.TransformDirection(new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized * speed);
+            Debug.DrawRay(this.transform.position, this.transform.forward, Color.cyan);
+            rb.velocity = new Vector3(movement.x, rb.velocity.y, movement.z);
+            this.transform.LookAt(new Vector3(camOrient.transform.position.x, this.transform.position.y, camOrient.transform.position.z));
+            this.transform.Rotate(0, 180, 0);
+        }
+        else
+        {
+            Vector3 movement = transform.TransformDirection(new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized * speed);
+            rb.velocity = new Vector3(movement.x, rb.velocity.y, movement.z);
+        }
         if (Physics.Raycast(transform.position, Vector3.down, 1F))
         {
             onGround = true;
