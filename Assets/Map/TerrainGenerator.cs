@@ -16,6 +16,8 @@ public class TerrainGenerator : MonoBehaviour
     public GameObject treePrefab;
     public GameObject rockPrefab;
 
+    public GameObject navMeshBaker;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -47,5 +49,7 @@ public class TerrainGenerator : MonoBehaviour
             tree.transform.SetParent(rockParent.transform);
             tree.transform.rotation = Quaternion.Euler(Random.Range(0f, 360f), Random.Range(0f, 360f), Random.Range(0f, 360f));
         }
+
+        navMeshBaker.GetComponent<NavMeshBaker>().Bake();
     }
 }
